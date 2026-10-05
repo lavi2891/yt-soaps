@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>סבוני גוף טבעיים - עבודת יד</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&family=Secular+One&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #fcf9f2;
+            --card-bg: #ffffff;
+            --primary-color: #7d6b56;
+            --accent-color: #d4a373;
+            --text-main: #333333;
+            --text-muted: #555555;
+            --border-color: #e6dfd5;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Rubik', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px 30px;
+            background: linear-gradient(180deg, #f3ede2 0%, var(--bg-color) 100%);
+        }
+
+        header h1 {
+            font-family: 'Secular One', sans-serif;
+            font-size: 2.8rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 25px;
+        }
+
+        .pricing-badge {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(125, 107, 86, 0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Filter Section */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 896 / 1195;
+            object-fit: contain;
+            background-color: #eee;
+        }
+
+        .product-content {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-size: 1.6rem;
+            color: var(--primary-color);
+            margin-bottom: 6px;
+        }
+
+        .product-tagline {
+            font-size: 0.95rem;
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--primary-color);
+            margin-top: 15px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #f0e8dd;
+            padding-bottom: 3px;
+        }
+
+        .ingredients-list {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .benefits-list {
+            list-style-type: none;
+            font-size: 0.93rem;
+            margin-bottom: 15px;
+        }
+
+        .benefits-list li {
+            position: relative;
+            padding-right: 22px;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .benefits-list li::before {
+            content: "🌿";
+            position: absolute;
+            right: 0;
+            font-size: 0.85rem;
+            top: 2px;
+        }
+
+        .suitable-for {
+            background-color: var(--bg-color);
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            line-height: 1.5;
+            margin-top: auto;
+            border-right: 3px solid var(--accent-color);
+        }
+
+        .order-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background-color: #25D366;
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .order-btn:hover {
+            background-color: #1eb854;
+        }
+
+        /* Contact Footer */
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            padding: 30px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: var(--radius) var(--radius) 0 0;
+        }
+
+        footer h2 {
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        footer a {
+            color: #ffe8d6;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>סבוני גוף טבעיים - עבודת יד</h1>
+        <p>סבונים איכותיים משמנים צמחיים, חמאות עשירות ושמנים אתריים. למי שרוצה להתפנק או לפנק.</p>
+        <div class="pricing-badge">
+            🏷️ מחירי השקה: יחידה ב-18 ₪ | זוג ב-32 ₪
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- Filters -->
+        <div class="filter-container">
+            <button type="button" class="filter-btn active" aria-pressed="true" data-filter="all" onclick="filterSoaps('all')">הכל</button>
+            <button type="button" class="filter-btn" aria-pressed="false" data-filter="sensitive" onclick="filterSoaps('sensitive')">לעור רגיש ועדין</button>
+            <button type="button" class="filter-btn" aria-pressed="false" data-filter="dry" onclick="filterSoaps('dry')">לעור יבש, עייף או סדוק</button>
+            <button type="button" class="filter-btn" aria-pressed="false" data-filter="all-skin" onclick="filterSoaps('all-skin')">לטיפוח יומי ואיזון</button>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="products-grid">
+
+            <!-- Soap 1 -->
+            <div class="product-card" data-category="sensitive all-skin">
+                <img src="./לבנדר מלטף.jpeg" alt="סבון לבנדר מלטף" class="product-image" width="896" height="1195" decoding="async">
+                <div class="product-content">
+                    <h2 class="product-title">סבון לבנדר מלטף</h2>
+                    <div class="product-tagline">רגיעה עמוקה, הזנה עדינה והגנה על שילוב הלחות</div>
+
+                    <div class="section-title">הרכב ושילוב הרכיבים</div>
+                    <div class="ingredients-list">שמן זית, שמן קוקוס, חמאת שיאה, שמן קיק, חימר לבן (קאולין) ושמן אתרי לבנדר.</div>
+
+                    <div class="section-title">סגולות ותכונות מורחבות</div>
+                    <ul class="benefits-list">
+                        <li><strong>הרגעה והורדת אדמומיות:</strong> שמן אתרי לבנדר ידוע בתכונותיו המרגיעות. הוא מסייע בהפחתת גירויים, אדמומיות ותחושת אי-נוחות בעור, ומשרה תחושת שלווה נפשית וגופנית בסוף היום.</li>
+                        <li><strong>שיקום מעטפת הלחות הטבעית:</strong> השילוב של שמן זית עשיר בוויטמין E יחד עם חמאת שיאה מעניק שכבת הגנה המונעת התייבשות לאחר הרחצה.</li>
+                        <li><strong>ספיגת שומן עדינה ללא ייבוש:</strong> החימר הלבן (קאולין) מנקה בעדינות עודפי שומן ולכלוך מנקבוביות העור מבלי לפגוע בשומנים הטבעיים החיוניים לבריאות העור.</li>
+                        <li><strong>קצף קטיפתי ומפנק:</strong> שמן הקוקוס והקיק יוצרים קצף קרמי ועשיר המעניק חוויית רחצה רכה במיוחד.</li>
+                    </ul>
+
+                    <div class="suitable-for">
+                        ✨ <strong>למי מתאים?</strong>
+                        מתאים במיוחד בעלי עור רגיש, מעורב או מגורה, לאנשים הסובלים מיובש קל אחרי רחצה בסבון רגיל, ולכל מי שמחפש מקלחת מרגיעה להורדת מתחים לפני השינה.
+                    </div>
+
+                    <a href="https://wa.me/972584020823?text=היי,%20אשמח%20להזמין%20סבון%20לבנדר%20מלטף" class="order-btn" target="_blank" rel="noopener noreferrer">להזמנה ב-WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- Soap 2 -->
+            <div class="product-card" data-category="dry">
+                <img src="./חמים ומעורר.jpeg" alt="סבון חמים ומעורר" class="product-image" width="896" height="1195" decoding="async">
+                <div class="product-content">
+                    <h2 class="product-title">סבון חמים ומעורר</h2>
+                    <div class="product-tagline">פילינג עדין, המרצת זרימת הדם וחידוש המרקם</div>
+
+                    <div class="section-title">הרכב ושילוב הרכיבים</div>
+                    <div class="ingredients-list">חמאת שיאה, חמאת קקאו, שמן קוקוס, שמן זית, שמן קיק, חימר אדום, אבקת קינמון, ושמנים אתריים (ברגמוט, לבנדר, גרניום, סנדלווד).</div>
+
+                    <div class="section-title">סגולות ותכונות מורחבות</div>
+                    <ul class="benefits-list">
+                        <li><strong>המרצת מחזור הדם והתחדשות תאים:</strong> תרכובת הקינמון והחימר האדום מעוררת את זרימת הדם הנימית מתחת לעור, מסייעת בסילוק רעלים ומעניקה לעור מראה חיוני וזוחֵר.</li>
+                        <li><strong>פילינג טבעי והחלקה:</strong> גרגירי הקינמון העדינים יחד עם המינרלים של החימר האדום מסירים תאי עור מתים ומותירים מרקם חלק ומשיי.</li>
+                        <li><strong>שיקום והזנה עמוקה לעור יבש:</strong> חמאת קקאו וחמאת שיאה מזינות בחומצות שומן חיוניות הפועלות לשיקום אלסטיות העור ולמניעת יובש קיצוני.</li>
+                        <li><strong>ארומתרפיה מעוררת ומחממת:</strong> שילוב השמנים האתריים (סנדלווד, ברגמוט, גרניום ולבנדר) מעניק ארומה עשירה, מעוררת חושים ומחממת.</li>
+                    </ul>
+
+                    <div class="suitable-for">
+                        ✨ <strong>למי מתאים?</strong>
+                        אידיאלי לעור יבש, מחוספס, עייף או דהוי, לחובבי פילינג וניקוי עמוק, ולמי שרוצה להתחיל את הבוקר עם מקלחת מעוררת אנרגיה ורעננות.
+                    </div>
+
+                    <a href="https://wa.me/972584020823?text=היי,%20אשמח%20להזמין%20סבון%20חמים%20ומעורר" class="order-btn" target="_blank" rel="noopener noreferrer">להזמנה ב-WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- Soap 3 -->
+            <div class="product-card" data-category="all-skin dry">
+                <img src="./פרחוני.jpeg" alt="סבון פרחוני" class="product-image" width="896" height="1195" decoding="async">
+                <div class="product-content">
+                    <h2 class="product-title">סבון פרחוני</h2>
+                    <div class="product-tagline">טיפוח משי, איזון הפרשת השומן וטיהור מינרלי</div>
+
+                    <div class="section-title">הרכב ושילוב הרכיבים</div>
+                    <div class="ingredients-list">שמן שקדים מתוקים, שמן זית, חמאת שיאה, שמן קוקוס, שמן קיק, חימר ירוק, חימר אדום, ושמנים אתריים (לבנדר, גרניום, ניאולי).</div>
+
+                    <div class="section-title">סגולות ותכונות מורחבות</div>
+                    <ul class="benefits-list">
+                        <li><strong>רכות משי וגמישות:</strong> שמן שקדים מתוקים נספג בקלות ומעניק לעור גמישות, רכות יוצאת דופן ומגע קטיפתי מבלי להכביד.</li>
+                        <li><strong>איזון וטיהור עמוק:</strong> השילוב המאוזן של חימר ירוק (הידוע בספיגת עודפי שומן וטיהור רעלים) וחימר אדום עוזר לאזן את הפרשת השומן הטבעית של העור.</li>
+                        <li><strong>תמיכה ואנטי-אוקסידנטים:</strong> שמן אתרי ניאולי וגרניום מעניקים הגנה אנטי-בקטריאלית עדינה ומסייעים לשמירה על מראה עור נקי ובריא.</li>
+                        <li><strong>ניחוח פרחוני מרענן:</strong> ארומה פרחונית, יוקרתית ומרעננת המעניקה חוויית ספא ביתית מלאה.</li>
+                    </ul>
+
+                    <div class="suitable-for">
+                        ✨ <strong>למי מתאים?</strong>
+                        מתאים לכל סוגי העור (רגיל, יבש, או מעורב), מושלם כסבון טיפוח יומי לכל בני המשפחה, ולכל מי שאוהב ניחוח פרחוני יוקרתי ועור רך וגמיש בכל רחצה.
+                    </div>
+
+                    <a href="https://wa.me/972584020823?text=היי,%20אשמח%20להזמין%20סבון%20פרחוני" class="order-btn" target="_blank" rel="noopener noreferrer">להזמנה ב-WhatsApp</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <h2>רוצים להתפנק או להזמין מתנה?</h2>
+        <p>להזמנות ופרטים נוספים:</p>
+        <p>📞 תהילה: <a href="tel:0584020823">058-4020823</a> | יובל: <a href="tel:0509606144">050-9606144</a></p>
+    </footer>
+
+    <script>
+        function filterSoaps(category) {
+            const cards = document.querySelectorAll('.product-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => {
+                const isActive = btn.dataset.filter === category;
+                btn.classList.toggle('active', isActive);
+                btn.setAttribute('aria-pressed', String(isActive));
+            });
+
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category.split(' ').includes(category)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
